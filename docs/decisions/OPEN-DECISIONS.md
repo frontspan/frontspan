@@ -33,3 +33,9 @@ D-04 and preliminary D-06: direction approved in [ADR-016](ADR-016-openapi-codeg
 D-03 and D-05: configuration and normalized IR v1 design approved in [ADR-017](ADR-017-config-ir-v1.md). JSON Schema/TypeScript implementation, migration and compatibility verification remain open; sync design is recorded in ADR-018; runtime enforcement, mapping and transport details follow S0-06/07/08.
 
 D-06 and D-07: code generation ownership and intelligent sync v1 design approved in [ADR-018](ADR-018-codegen-sync-v1.md). Emitter selection, lock/snapshot schemas, filesystem recovery tests, compatibility certification, transport and governance integration remain implementation or subsequent design tasks.
+
+D-08/D-09/D-11: detailed runtime design approved in [ADR-019](ADR-019-http-query-security-v1.md); transport, connection-bound destination enforcement, app auth adapter, CI trust root and security tests remain implementation gates.
+
+D-02: CLI and Studio design approved in [ADR-020](ADR-020-cli-studio-v1.md); exact dependencies, packaging, local security and concurrency verification remain open.
+
+D-12: [synthetic fixture plan](../testing/SYNTHETIC-FIXTURES.md) and [pilot targets](../testing/PILOT-MEASUREMENT.md) approved; actual tests, measurement and organization authorization pending.

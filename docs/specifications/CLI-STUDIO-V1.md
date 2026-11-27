@@ -1,6 +1,6 @@
 # CLI and local Studio v1
 
-Status: proposed; S0-07 (#7), D-02. ADR-015/016/017/018 apply. S0-06 detailed security proposal (#17) remains in review; network playground implementation depends on approved controls. No implementation or dependency installation.
+Status: accepted design baseline under ADR-020; implementation and verification pending. S0-07 (#7), D-02. ADR-015/016/017/018 apply. S0-06 detailed security design (ADR-019) is accepted; network playground implementation depends on approved controls. No implementation or dependency installation.
 
 ## Stack and package boundaries
 
@@ -74,7 +74,7 @@ Read only approved config roots, authorized snapshot paths and generated artifac
 
 ## Playground boundary
 
-Only explicitly configured and selected endpoint, explicit environment, bounded typed input; no arbitrary URL, headers, credential display or generic proxy. Use approved shared transport/destination policy (S0-06 #17 still under review); if destination, auth adapter or safe identity cannot be verified, disable network testing. Studio never executes consumer app auth modules automatically; synthetic fixtures first. Existing session testing requires separately approved adapter approach; not assume local Studio can impersonate app user. Server-only import credentials resolved only in controlled Node loader; no plaintext secret input or return to browser. Testing reads explicit click; mutations require separate clear confirmation with exact endpoint/environment/input summary, default disallow production mutation, no retries; organization policy may disable all network testing. No persistence of real request/response payload, only redacted status/timing/validation summary; display bounded explicitly permitted exposed data in memory, mask sensitive fields, no raw headers/error bodies, no export by default. No production bypass. Playground network gate depends on approved S0-06 SSRF/auth/CSRF controls and implementation tests.
+Only explicitly configured and selected endpoint, explicit environment, bounded typed input; no arbitrary URL, headers, credential display or generic proxy. Use approved shared transport/destination policy (ADR-019; implementation verification pending); if destination, auth adapter or safe identity cannot be verified, disable network testing. Studio never executes consumer app auth modules automatically; synthetic fixtures first. Existing session testing requires separately approved adapter approach; not assume local Studio can impersonate app user. Server-only import credentials resolved only in controlled Node loader; no plaintext secret input or return to browser. Testing reads explicit click; mutations require separate clear confirmation with exact endpoint/environment/input summary, default disallow production mutation, no retries; organization policy may disable all network testing. No persistence of real request/response payload, only redacted status/timing/validation summary; display bounded explicitly permitted exposed data in memory, mask sensitive fields, no raw headers/error bodies, no export by default. No production bypass. Playground network gate depends on accepted S0-06 SSRF/auth/CSRF controls and implementation tests.
 
 ## Planned verification and references
 

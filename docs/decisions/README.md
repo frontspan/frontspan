@@ -21,8 +21,10 @@ Accepted means previously agreed in product discovery; proposed means a recommen
 | [ADR-015](ADR-015-toolchain-compatibility.md) | Runtime targets, ESM, engineering stack, CI and release policy | Accepted; verification pending |
 | [ADR-016](ADR-016-openapi-codegen.md) | OpenAPI import, parser adapter, IR, hybrid generation and safe ownership | Accepted; verification and detailed contracts pending |
 | [ADR-017](ADR-017-config-ir-v1.md) | Configuration v1, merge and policy semantics, normalized source/exposed IR | Accepted; implementation and verification pending |
-
 | [ADR-018](ADR-018-codegen-sync-v1.md) | Deterministic generation, ownership, lockfile, contract sync, approvals and recovery | Accepted; implementation and verification pending |
+
+| [ADR-019](ADR-019-http-query-security-v1.md) | HTTP, query, secure proxy and governance | Accepted; security verification pending |
+| [ADR-020](ADR-020-cli-studio-v1.md) | CLI and local Studio | Accepted; security and packaging verification pending |
 
 ## ADR-001 to ADR-009 — rationale and implications
 
