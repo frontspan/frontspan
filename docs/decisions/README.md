@@ -20,8 +20,9 @@ Accepted means previously agreed in product discovery; proposed means a recommen
 | ADR-014 | Headless form/table/i18n integrations; no UI builders or app-wide state mandate | Accepted |
 | [ADR-015](ADR-015-toolchain-compatibility.md) | Runtime targets, ESM, engineering stack, CI and release policy | Accepted; verification pending |
 | [ADR-016](ADR-016-openapi-codegen.md) | OpenAPI import, parser adapter, IR, hybrid generation and safe ownership | Accepted; verification and detailed contracts pending |
-
 | [ADR-017](ADR-017-config-ir-v1.md) | Configuration v1, merge and policy semantics, normalized source/exposed IR | Accepted; implementation and verification pending |
+
+| [ADR-018](ADR-018-codegen-sync-v1.md) | Deterministic generation, ownership, lockfile, contract sync, approvals and recovery | Accepted; implementation and verification pending |
 
 ## ADR-001 to ADR-009 — rationale and implications
 
@@ -29,7 +30,7 @@ Accepted means previously agreed in product discovery; proposed means a recommen
 - **002:** Shared runtime can be upgraded as a package, while generated types/services/hooks remain inspectable and owned by the consuming project. Sync must preserve handwritten code.
 - **003:** Git review and rollback are the configuration workflow, not a substitute for runtime audit. No secrets in tracked files.
 - **004:** Own the IR and generation behavior; study existing tools rather than bind product design to them. Use proven parsing libraries where suitable and honor licenses.
-- **005:** Generate only selected operations and required models into fixed domain folders. Compatible changes may be applied automatically; breaking changes require explicit approval. Exact classification and approval persistence are pending.
+- **005:** Generate only selected operations and required models into fixed domain folders. Compatible changes may be applied automatically; breaking changes require explicit approval. Classification and approval design accepted in ADR-018; implementation and verification pending.
 - **006:** Use native Fetch, standard error/response contracts, generated query/mutation helpers and Zod; cache invalidation is explicitly declared, not guessed. Required security validation cannot be disabled.
 - **007:** Direct execution is conditional on upstream enforcement; proxy and composite execution must preserve caller identity and avoid increasing upstream privileges. UI wrappers are presentation only.
 - **008:** Shared presets are pinned by projects; local overrides are bounded by hard policy. Enforcement mechanism is pending.

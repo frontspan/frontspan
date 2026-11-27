@@ -1,6 +1,6 @@
 # Code generation and file ownership v1
 
-Status: proposed; S0-05 (#5). Depends on ADR-016/017 and IR-V1. No executable implementation or tested compatibility is implied.
+Status: accepted design baseline under ADR-018; implementation and verification pending. S0-05 (#5). Depends on ADR-016/017 and IR-V1. No executable implementation or tested compatibility is implied.
 
 ## Boundaries
 

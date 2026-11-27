@@ -1,9 +1,9 @@
-# ADR proposal — Code generation ownership and intelligent sync
+# ADR-018 — Code generation ownership and intelligent sync
 
-Status: Proposed; maintainer approval required. Date: 2026-11-28. Issue #5; D-06/D-07.
+Status: Accepted by maintainer on 2026-11-28; implementation and verification pending. Date: 2026-11-28. Issue #5; D-06/D-07.
 Specifications: [Codegen v1](../specifications/CODEGEN-V1.md), [Sync v1](../specifications/SYNC-V1.md).
 
-## Proposed decisions
+## Accepted decisions
 
 - Keep one modular codegen package with pure internal planner/generators/emitters and separate writer. Hybrid structured emitter and controlled templates, no arbitrary plugin execution. Plan symbols, files and dependencies before rendering.
 - Fixed domain output; stable names and explicit collision resolution; shared schemas and recursive groups placed coherently. No silent renaming, manual code outside generated ownership.
@@ -19,4 +19,4 @@ Direct file-writing generators and recursive clean are simpler but risk lost use
 
 ## Acceptance gates
 
-Approve design before implementation. Sprint 3/4 must implement and test deterministic generation, ownership and recovery, directional compatibility, stale approval and no-write checks. Exact lock/snapshot JSON Schema, output contract tests, compiler/formatter choice and policy/transport integration remain pending.
+Maintainer approval recorded; implement and verify in the relevant sprints. Sprint 3/4 must implement and test deterministic generation, ownership and recovery, directional compatibility, stale approval and no-write checks. Exact lock/snapshot JSON Schema, output contract tests, compiler/formatter choice and policy/transport integration remain pending.

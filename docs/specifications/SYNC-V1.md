@@ -1,6 +1,6 @@
 # Intelligent sync and lockfile v1
 
-Status: proposed; S0-05 (#5), ADR-016/017. This is design, not executable code or proof of compatibility.
+Status: accepted design baseline under ADR-018; implementation and verification pending. S0-05 (#5), ADR-016/017. This is design, not executable code or proof of compatibility.
 
 ## Baseline, candidate and snapshot policy
 
