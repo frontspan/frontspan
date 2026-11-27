@@ -4,7 +4,7 @@ Configuration-first frontend development toolkit for Next.js.
 
 Frontspan aims to help frontend teams standardize API integration, generate project-owned TypeScript code, and configure a lightweight server-side API layer without replacing existing backend systems.
 
-**Status: Sprint 0 — product and engineering specification.** No usable packages or CLI have been released yet.
+**Status: Sprint 1 — foundation engineering.** The workspace contains a private package skeleton only. No usable packages or CLI have been released.
 
 ## Planned capabilities
 
@@ -16,6 +16,21 @@ Frontspan aims to help frontend teams standardize API integration, generate proj
 
 Composite BFF execution, managed authentication, permissions, forms, tables, observability and managed collections are later-stage capabilities.
 
+## Contributor checks
+
+Use the exact Node version in [`.nvmrc`](.nvmrc) and the pnpm version in [`package.json`](package.json). The root manifest also pins the TypeScript, Turborepo, lint, formatter and unit test tools; [`pnpm-lock.yaml`](pnpm-lock.yaml) records their resolved dependency graph.
+
+```sh
+pnpm install --frozen-lockfile
+pnpm lint
+pnpm format:check
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+After building, switch to **Node 24.22.3** and run `node scripts/smoke-consumer.mjs` to pack the private skeleton and test its ESM entry point in a fresh offline npm consumer. This smoke does not certify a Next.js, React or generated TypeScript matrix. Changesets and Playwright are deferred until there are release and application fixtures to validate.
+
 ## Project documentation
 
 - [Product requirements](docs/product/PRD.md)
@@ -25,6 +40,7 @@ Composite BFF execution, managed authentication, permissions, forms, tables, obs
 - [Open decisions](docs/decisions/OPEN-DECISIONS.md)
 - [Roadmap](docs/planning/ROADMAP.md)
 - [Sprint 0](docs/planning/SPRINT-00.md)
+- [Sprint 1](docs/planning/SPRINT-01.md)
 - [Agent instructions](AGENTS.md)
 - [Contributing](CONTRIBUTING.md)
 
