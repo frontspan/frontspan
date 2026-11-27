@@ -1,6 +1,6 @@
-# ADR proposal — Toolchain, compatibility and releases
+# ADR-015 — Toolchain, compatibility and releases
 
-Status: Proposed; maintainer approval required.
+Status: Accepted by maintainer on 2026-11-27. Compatibility targets are not certified until verified.
 Date: 2026-11-27. Issue: [#2](https://github.com/frontspan/frontspan/issues/2). Covers D-01/D-10.
 No compatibility tests have been run and no dependencies have been installed.
 
@@ -42,7 +42,7 @@ Public npm registry for generic packages, private registry for organization-spec
 - TypeScript 7-only: faster compiler but tool API compatibility risk; prefer TS6 initially, evaluate TS7 separately.
 - Independent package versions: rejected by ADR-009; fixed group is appropriate.
 - Exact toolchain patches, package scope/CLI name ownership, real consumer compatibility, ruleset/CI availability, npm bootstrap and workflow tests remain open. No security or CI enforcement currently installed.
-- Acceptance requires maintainer approval of this proposal, then Sprint 1 implementation/verification.
+- Maintainer approval is recorded; Sprint 1 implementation and verification remain required.
 
 ## Sources (reviewed 2026-11-27)
 
