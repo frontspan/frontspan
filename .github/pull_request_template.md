@@ -15,4 +15,4 @@
 
 ## Maintainer review
 
-Do not merge until reviewed.
+Follow AGENTS.md merge policy. Documentation-only updates within accepted scope may be merged after verification by an authorized agent. New architecture/security decisions require maintainer approval; application code requires CI and review.
