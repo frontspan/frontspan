@@ -1,6 +1,6 @@
 # HTTP and query contracts v1
 
-Status: proposed S0-06 (#6), following approved runtime direction. ADR-006/007/017/018 apply. All snippets are design examples; no packages or tests executed.
+Status: accepted design baseline under ADR-019; implementation and verification pending. S0-06 (#6). ADR-006/007/017/018 apply. All snippets are design examples; no packages or tests executed.
 
 ## Runtime boundary and API
 

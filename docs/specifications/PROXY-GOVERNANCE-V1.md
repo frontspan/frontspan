@@ -1,6 +1,6 @@
 # Next.js proxy and enterprise governance v1
 
-Status: proposed S0-06 (#6). Runtime direction approved; new security controls require maintainer review. ADR-007/016/017/018 apply. This is a threat model and implementation contract, not a security certification.
+Status: accepted design baseline under ADR-019; implementation and verification pending. S0-06 (#6). ADR-007/016/017/018 apply. This is a threat model and implementation contract, not a security certification.
 
 ## Trust boundaries
 

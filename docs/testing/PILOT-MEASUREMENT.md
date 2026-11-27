@@ -1,11 +1,11 @@
 # Pilot measurement and acceptance plan
 
-Status: proposed measurement protocol and suggested numeric targets, not approved results. S0-08 (#8), D-12, 2026-11-28. [PRD](../product/PRD.md) and [scope](../product/SCOPE.md) require a representative read, pagination and mutation comparison and maintainer acceptance. [Fixture inventory](SYNTHETIC-FIXTURES.md) defines synthetic scenarios.
+Status: accepted measurement protocol and planning targets on 2026-11-28; no measured results. S0-08 (#8), D-12, 2026-11-28. [PRD](../product/PRD.md) and [scope](../product/SCOPE.md) require a representative read, pagination and mutation comparison and maintainer acceptance. [Fixture inventory](SYNTHETIC-FIXTURES.md) defines synthetic scenarios.
 
 ## Phases and entry gates
 
 1. Synthetic bench: compare a manually integrated Next.js reference app and the same starting app using Frontspan. Use the same approved API contract, target runtime, feature requirements, tests and auth/security constraints. No company data.
-2. Synthetic end-to-end: validate incremental install, Studio/CLI parity, contract evolution and direct/proxy deployment in isolated test environment. Require all mandatory MVP acceptance/security cases applicable to deployed functionality to pass. PR #17 and #18 require approval and implementation verification; no proxy or Studio network pilot before controls pass.
+2. Synthetic end-to-end: validate incremental install, Studio/CLI parity, contract evolution and direct/proxy deployment in isolated test environment. Require all mandatory MVP acceptance/security cases applicable to deployed functionality to pass. ADR-019/020 accepted; implementation verification required; no proxy or Studio network pilot before controls pass.
 3. Authorized organization pilot: only after maintainer and relevant organization data/security owner explicitly approve scope, environment, access, retention and metrics. Prefer nonproduction sandbox and synthetic or expressly authorized fixtures; real contract and generated source remain in authorized private workspace, never public repo. No automatic production traffic, telemetry, publishing or credential collection. Document actual approved authority; no implied approval from this task.
 
 ## Fair baseline and measurement
@@ -23,7 +23,7 @@ Start both methods from identical clean commits of an existing App Router projec
 
 Record time per task from first action to passing agreed tests/review, with active time, setup and rework tracked separately. Include tool installation and docs discovery. Do not count generated lines as time saved. Use identical review checklist, log defects by severity and time to fix. Record errors surfaced before runtime vs during test/review, not just total diagnostics. Keep per-trial rows and report median, range and sample size; no statistical claims from small samples. Relative time saving = (manual active minutes - Frontspan active minutes) / manual active minutes * 100; undefined when manual is zero. Compare first integration including setup and subsequent incremental tasks separately; optionally report break-even after measured setup cost. Sync timing compares same baseline/candidate contracts, not artificially simpler updates. Runtime overhead measured against equivalent manual proxy path with same network/response/validation workload; use warmup, bounded concurrency and repeated samples, record p50/p95 and payload size, do not compare direct and proxy as identical work.
 
-## Proposed pilot targets (maintainer to agree before measurement)
+## Accepted pilot planning targets (not measured)
 
 | Metric | Suggested threshold | Interpretation |
 |---|---|---|
@@ -37,7 +37,7 @@ Record time per task from first action to passing agreed tests/review, with acti
 | Review defects | No increase in severe correctness/security defects vs manual workflow | Compare equal checklist, report counts and severity |
 | Proxy overhead | Report p50/p95 and investigate regression; propose budget after baseline | No arbitrary production latency promise |
 
-The 30% and 50% targets are planning hypotheses, not prior user commitments; finalize before pilot and do not retroactively adjust to make results pass. If target not met, report and decide iterate/narrow scope/stop; mandatory correctness/security gates cannot be waived by productivity gains. No public performance claim without measured and authorized evidence. Small-sample pilot indicates feasibility only.
+The 30% and 50% targets are accepted planning hypotheses, not measured results; confirm task definitions before pilot and do not retroactively adjust to make results pass. If target not met, report and decide iterate/narrow scope/stop; mandatory correctness/security gates cannot be waived by productivity gains. No public performance claim without measured and authorized evidence. Small-sample pilot indicates feasibility only.
 
 ## Evidence template (no real data)
 
@@ -51,4 +51,4 @@ A release checklist links fixture IDs and CI results, compatibility matrix, secu
 
 ## Decision and follow-up
 
-Maintainer reviews suggested targets and fixture inventory now; later sign-off based on evidence, not this document. Author actual fixtures and tests in corresponding implementation issues; use no implementation in Sprint 0. Pilot execution and company authorization remain future gates. Unknown sample size, actual performance, compatibility and organizational permission are explicit blockers to claims.
+Maintainer accepted the targets and fixture inventory on 2026-11-28; later sign-off based on evidence, not this document. Author actual fixtures and tests in corresponding implementation issues; use no implementation in Sprint 0. Pilot execution and company authorization remain future gates. Unknown sample size, actual performance, compatibility and organizational permission are explicit blockers to claims.

@@ -1,6 +1,6 @@
 # Synthetic fixture inventory and verification matrix
 
-Status: Sprint 0 design, not executable fixtures or test results. Issue #8 (D-12), 2026-11-28. Based on accepted ADR-015–018, [OpenAPI research](../research/OPENAPI-CODEGEN.md), [release scope](../product/SCOPE.md), [configuration](../specifications/CONFIGURATION-V1.md), [IR](../specifications/IR-V1.md), [codegen](../specifications/CODEGEN-V1.md), and [sync](../specifications/SYNC-V1.md). Runtime and Studio test expectations that depend on PR #17 and #18 are provisional until those proposals are approved; this inventory does not authorize or supersede them.
+Status: accepted Sprint 0 fixture plan; not executable fixtures or test results. Issue #8 (D-12), 2026-11-28. Based on accepted ADR-015–018, [OpenAPI research](../research/OPENAPI-CODEGEN.md), [release scope](../product/SCOPE.md), [configuration](../specifications/CONFIGURATION-V1.md), [IR](../specifications/IR-V1.md), [codegen](../specifications/CODEGEN-V1.md), and [sync](../specifications/SYNC-V1.md). Runtime and Studio designs accepted in ADR-019/020; test expectations remain unverified. This inventory does not supersede them.
 
 ## Synthetic domain
 
@@ -20,7 +20,7 @@ Use an invented order/catalog system, independent of any actual company. All IDs
 | GET /categories | direct; ApiResponse<Category[]> | Recursive graph and validators |
 | GET /internal/unselected | not selected | Import catalog only; no generated service or proxy exposure |
 
-Example conceptual types: Product {id: string, name: string, priceMinor: integer}; Order {id: string, product: ProductSummary, quantity: integer, status: pending|confirmed, note?: string|null}; Category {id: string, children?: Category[]}. Deliberately include shared ProductSummary in catalog and orders, mutually recursive synthetic schemas in parser-only cases, readOnly id and writeOnly test field in directional schema cases. Use schema constraints that fit approved feature subset. Example order list source result has items [order-a1, order-a2], page 1, pageSize 2, total 3; projected public data length 2, totalPages 2, next true, previous false (pagination details conditional on #17). Tenant B records never appear in tenant A output. Fixture responses include controlled errors, malformed media/body, latency and disconnects. Reset deterministic state per test; use injected clocks/randomness where appropriate, not real sleep for unit tests.
+Example conceptual types: Product {id: string, name: string, priceMinor: integer}; Order {id: string, product: ProductSummary, quantity: integer, status: pending|confirmed, note?: string|null}; Category {id: string, children?: Category[]}. Deliberately include shared ProductSummary in catalog and orders, mutually recursive synthetic schemas in parser-only cases, readOnly id and writeOnly test field in directional schema cases. Use schema constraints that fit approved feature subset. Example order list source result has items [order-a1, order-a2], page 1, pageSize 2, total 3; projected public data length 2, totalPages 2, next true, previous false (pagination details verification pending for ADR-019). Tenant B records never appear in tenant A output. Fixture responses include controlled errors, malformed media/body, latency and disconnects. Reset deterministic state per test; use injected clocks/randomness where appropriate, not real sleep for unit tests.
 
 ## Proposed fixture paths (not created in Sprint 0)
 
@@ -66,20 +66,20 @@ Repository layout here is a planning recommendation; implementation tasks own ac
 | OAS-08 | Unsupported 3.1 keyword/dialect, 3.2, invalid/oversized input, YAML alias expansion | Bounded explicit failure; no silent downgrade | 2 / FR-02 |
 | GEN-01 | Repeat generation and semantically unordered key changes | Byte-identical output and lock; no timestamps/local paths | 3 / FR-03 |
 | GEN-02 | Shared schema, recursive references, name/path collisions, hostile descriptions | Compiling valid output or diagnostic before writes; no injection | 3 / FR-03 |
-| GEN-03 | Consumer Next fixture: service, query keys/options/hooks, Zod | Public imports compile across approved target matrix; conditional on #17 | 3 / FR-03,05 |
+| GEN-03 | Consumer Next fixture: service, query keys/options/hooks, Zod | Public imports compile across approved target matrix; verification pending for ADR-019 | 3 / FR-03,05 |
 | OWN-01 | Unknown colliding files, dirty/missing owned file, stale lock, safe deletion | Conflict; never overwrite manual files; delete only verified obsolete owned files | 3/4 / FR-04 |
 | SYN-01 | Compatible, breaking, review-required and invalid evolution | Expected classifications and impacted endpoint/artifact IDs | 4 / FR-04 |
 | SYN-02 | Preview, stale approval, opted-in compatible apply, offline CI check | Read-only preview/check; stale/invalid/conflicting apply blocked | 4 / FR-04 |
 | SYN-03 | Interrupted transaction and concurrent edit | Recover or preserve conflicts; no loss of unrelated bytes | 4 / FR-04 |
-| UI-01 | CLI/Studio identical input, edit/watch conflict, packaged local server | Same plan/diagnostics; no silent overwrite; conditional on #18 | 5 / FR-06 |
-| UI-02 | Host/origin/pairing, path restriction, untrusted documentation | Reject unauthorized local access; conditional on #18 | 5 / FR-06 |
-| UI-03 | Playground allowed endpoint, redaction, denied mutation/destination | Explicit permitted calls only; conditional on #17/#18 | 5/6 / FR-07 |
-| HTTP-01 | JSON mapping, strict schema, 204, binary/multipart, invalid media | Correct normalized values or bounded errors; conditional on #17 | 3/6 / FR-05 |
-| HTTP-02 | Cancellation, timeout/body read, retry budget, mutation no retry | No duplicate retry layers; conditional on #17 | 3/6 / FR-05 |
-| QUERY-01 | Pagination, explicit invalidation, scoped keys, SSR hydration | Correct results; no cross-user cache; conditional on #17 | 3/6 / FR-03,05 |
+| UI-01 | CLI/Studio identical input, edit/watch conflict, packaged local server | Same plan/diagnostics; no silent overwrite; verification pending for ADR-020 | 5 / FR-06 |
+| UI-02 | Host/origin/pairing, path restriction, untrusted documentation | Reject unauthorized local access; verification pending for ADR-020 | 5 / FR-06 |
+| UI-03 | Playground allowed endpoint, redaction, denied mutation/destination | Explicit permitted calls only; verification pending for ADR-019/020 | 5/6 / FR-07 |
+| HTTP-01 | JSON mapping, strict schema, 204, binary/multipart, invalid media | Correct normalized values or bounded errors; verification pending for ADR-019 | 3/6 / FR-05 |
+| HTTP-02 | Cancellation, timeout/body read, retry budget, mutation no retry | No duplicate retry layers; verification pending for ADR-019 | 3/6 / FR-05 |
+| QUERY-01 | Pagination, explicit invalidation, scoped keys, SSR hydration | Correct results; no cross-user cache; verification pending for ADR-019 | 3/6 / FR-03,05 |
 | PROXY-01 | Missing/denied auth, wrong tenant, forwarded headers and exposed fields | Denied before upstream IO when applicable; no privilege escalation/leak | 6 / FR-08 |
-| PROXY-02 | SSRF destination, DNS rebinding/redirect, traversal, CSRF, oversized input | Block unsafe requests; requires approved #17 and security verification | 6 / FR-08,09 |
-| GOV-01 | Tampered preset/lock/CI policy, weakened env and deployed policy | Protected expected policy and runtime checks fail closed; requires #17 | 1/6 / FR-09 |
+| PROXY-02 | SSRF destination, DNS rebinding/redirect, traversal, CSRF, oversized input | Block unsafe requests; requires ADR-019 security verification | 6 / FR-08,09 |
+| GOV-01 | Tampered preset/lock/CI policy, weakened env and deployed policy | Protected expected policy and runtime checks fail closed; requires ADR-019 verification | 1/6 / FR-09 |
 | PILOT-01 | Incremental consuming app, manual/generated parity and evolution | Evidence for all release gates, not just build success | 6 / FR-01–09 |
 
 Sprint references are logical targets from roadmap, not dates. Security checks must run before pilot deployment regardless of sprint. Use unit tests for deterministic logic, integration tests for fixture IO/HTTP and packaged consumers, Playwright for local Studio workflow, production Next build for runtime isolation. Run approved contributor/consumer matrix and record exact versions; no certification from a single test pass.
