@@ -1,1 +1,16 @@
-export {};
+export type {
+  AuthoredFile,
+  ConfigDiagnostic,
+  ConfigErrorCode,
+  ConfigPaths,
+  EndpointConfig,
+  EnvironmentConfig,
+  ExecutionMode,
+  HttpMethod,
+  LoadedConfig,
+  LoadConfigResult,
+  OperationalPolicies,
+  ResourceConfig,
+  RootConfig,
+  ValueRef,
+} from "./config-types.js";

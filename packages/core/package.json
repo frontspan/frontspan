@@ -14,7 +14,14 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./config": {
+      "node": {
+        "types": "./dist/load-config.d.ts",
+        "import": "./dist/load-config.js"
+      }
+    },
+    "./schemas/*.schema.json": "./dist/schemas/*.schema.json"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
