@@ -15,7 +15,7 @@ Use issue comments with a consistent prefix (Status: Backlog, Ready, In Progress
 
 Before starting: inspect the active sprint, existing open PRs, issue comments and dependencies. Only claim a ready task; post status and intended scope. Avoid duplicate claims. For concurrent agents, the maintainer/coordinator allocates issues explicitly; comments are not atomic locks.
 
-During work: use a separate branch/worktree, record blockers and new decisions in the issue, and link the PR. Follow AGENTS.md merge policy. After verification and required review/approval, merge, record evidence and close the completed issue. Do not close work solely because a PR exists.
+During work: use a separate branch/worktree, record blockers and new decisions in the issue, and link the PR. Follow AGENTS.md merge policy. Follow the [delegated development policy](AUTONOMOUS-DEVELOPMENT.md). Once trusted gates are active, routine tasks may enable native squash auto-merge after successful independent review and CI; until cutover, retain maintainer approval. Correct findings and repeat review on new heads; stop on ambiguous, sensitive or repeatedly failing changes. After verifying actual merge on main and all acceptance evidence, record the PR, commit, CI and review evidence and close the completed issue. Reconcile already-closed issues idempotently, then claim the next eligible issue in the approved sprint. Do not close work solely because a PR exists.
 
 At sprint review: query open/closed issues and linked PRs against the sprint plan. Report completed, blocked and remaining tasks; update the next sprint plan in Git. Do not invent calendar dates or estimates.
 

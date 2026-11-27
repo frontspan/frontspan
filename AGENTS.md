@@ -2,7 +2,7 @@
 
 ## Start here
 
-Read README.md, docs/product/PRD.md, docs/product/SCOPE.md, docs/architecture/ARCHITECTURE.md, docs/decisions/README.md, docs/decisions/OPEN-DECISIONS.md and the assigned issue. Read relevant ADRs and module specifications before touching a package.
+Read README.md, docs/product/PRD.md, docs/product/SCOPE.md, docs/architecture/ARCHITECTURE.md, docs/decisions/README.md, docs/decisions/OPEN-DECISIONS.md and the assigned issue. Read relevant ADRs and module specifications before touching a package. Follow the [delegated development and independent review policy](docs/planning/AUTONOMOUS-DEVELOPMENT.md).
 
 ## Task coordination
 
@@ -25,4 +25,4 @@ GitHub Issues are the task system of record; GitHub Projects is not required. Fo
 
 For implementation tasks, run the repository-defined lint, typecheck, build and relevant unit/integration/e2e commands once available. Record exact commands and outcomes; report skipped/failed checks and why. Cover edge cases and security boundaries, not just happy paths. Do not claim unexecuted tests passed.
 
-PR summary: issue, scope, decisions, changes, tests, compatibility/security implications, remaining risks. Documentation-only changes that do not introduce new architecture or security decisions, and documentation of already accepted decisions, may be merged by an authorized agent after verification. Issue and sprint administration does not require per-action approval. New architecture decisions, security-critical changes and package publishing require maintainer approval. Application code requires passing applicable CI and review before merge; if these gates are unavailable, stop. Do not bypass branch protections. For documentation-only tasks, verify links and consistency instead of inventing test results.
+PR summary: issue, scope, decisions, changes, tests, compatibility/security implications, remaining risks. Issue and sprint administration does not require per-action approval. All merges must satisfy active branch protections and the delegated development policy. Routine implementation and documentation may use independent automated review and squash auto-merge without per-PR human approval only after the trusted gates are verified and activated. Until then obtain required maintainer review. Never self-approve or publish a passing review check for your own changes. New architecture, security-critical changes, CI/review/merge-policy changes and other high-risk cases listed in the policy require explicit maintainer approval tied to the reviewed head. Application code requires passing applicable CI and independent review before merge; if gates are unavailable or ambiguous, stop. Do not bypass branch protections. For documentation-only tasks, verify links and consistency instead of inventing test results.

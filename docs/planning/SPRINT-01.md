@@ -1,6 +1,6 @@
 # Sprint 1 — Foundation engineering
 
-Status: backlog prepared; execution gated on explicit S0-10 readiness approval (#10). No dates or assignees. Follow AGENTS.md and ISSUE-WORKFLOW.md. All issues must verify dependencies and claim work before coding. Do not merge application code without passing applicable CI and review.
+Status: Sprint 1 execution authorized in #10; #20 completed. No dates or assignees. Follow AGENTS.md and ISSUE-WORKFLOW.md. All issues must verify dependencies and claim work before coding. Do not merge application code without passing applicable CI and review.
 
 | Task | Issue | Dependencies |
 |---|---|---|
@@ -15,10 +15,10 @@ Status: backlog prepared; execution gated on explicit S0-10 readiness approval (
 
 ## Bootstrap gate
 
-To avoid a CI bootstrap dependency cycle, S1-01 includes the minimal PR CI required to validate its own root scripts (lint, typecheck, test, build, frozen install). S1-02 expands this into matrix/quality gates after #20 merges. This is a sequencing clarification, not permission to bypass review or CI. If GitHub Actions cannot run or the maintainer cannot review, stop and report. Organization rulesets/permissions require explicit authorization. Exact version pin, npm ownership and release workflow remain verification/approval tasks; no publishing.
+To avoid a CI bootstrap dependency cycle, S1-01 includes the minimal PR CI required to validate its own root scripts (lint, typecheck, test, build, frozen install). S1-02 expands this into matrix/quality gates after #20 merges. This is a sequencing clarification, not permission to bypass review or CI. If required CI or review gates cannot run, stop and report. #21 also verifies and prepares the [delegated development policy](AUTONOMOUS-DEVELOPMENT.md); the current human approval gate remains until verified cutover. Organization rulesets/permissions require explicit authorization. Exact version pin, npm ownership and release workflow remain verification/approval tasks; no publishing.
 
 ## Sprint boundary
 
-Foundation only. No OpenAPI parser integration, code generation engine, proxy runtime, Studio UI or release publishing. Synthetic fixtures only. Each issue defines exact acceptance criteria and tests. Do not work ahead on unapproved changes. Agent should use #20 first after readiness gate, separate branch, implementation PR and verified evidence; then proceed in dependency order only when prior work is merged/closed. Review may require human action. No estimates until actual bootstrap results.
+Foundation only. No OpenAPI parser integration, code generation engine, proxy runtime, Studio UI or release publishing. Synthetic fixtures only. Each issue defines exact acceptance criteria and tests. Do not work ahead on unapproved changes. Agent should use the first eligible issue, separate branch, implementation PR and verified evidence; then proceed in dependency order only when prior work is merged/closed. Review may require human action. No estimates until actual bootstrap results.
 
 Exit: passing CI, verified exact toolchain, strict configuration/presets, safe edit foundation, offline CLI, installation/scaffold plan and packed consumer smoke. Report unresolved security/compatibility, prepare Sprint 2 backlog separately.
