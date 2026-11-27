@@ -18,8 +18,9 @@ Accepted means previously agreed in product discovery; proposed means a recommen
 | ADR-012 | MVP API development + basic BFF; later security/application/managed-resource phases | Planning recommendation for review |
 | ADR-013 | Public registry for generic packages, private organizational extensions | Accepted via ADR-015 |
 | ADR-014 | Headless form/table/i18n integrations; no UI builders or app-wide state mandate | Accepted |
-
 | [ADR-015](ADR-015-toolchain-compatibility.md) | Runtime targets, ESM, engineering stack, CI and release policy | Accepted; verification pending |
+
+| [ADR-016](ADR-016-openapi-codegen.md) | OpenAPI import, parser adapter, IR, hybrid generation and safe ownership | Accepted; verification and detailed contracts pending |
 
 ## ADR-001 to ADR-009 — rationale and implications
 

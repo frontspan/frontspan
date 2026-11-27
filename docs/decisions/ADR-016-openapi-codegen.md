@@ -1,9 +1,9 @@
-# ADR proposal — OpenAPI import and generation architecture
+# ADR-016 — OpenAPI import and generation architecture
 
-Status: Proposed; maintainer approval required. Date: 2026-11-27.
+Status: Accepted by maintainer on 2026-11-27; parser adoption remains conditional on verification. Date: 2026-11-27.
 Issue #3; D-04 and preliminary D-06. See [research](../research/OPENAPI-CODEGEN.md).
 
-## Proposed decisions
+## Accepted decisions
 
 1. MVP accepts Swagger 2.0, OAS 3.0.x and 3.1.x JSON/YAML with an explicit supported-feature matrix; reject 3.2 and unsupported selected-operation features rather than silently downgrade. Webhooks/callbacks/streaming and arbitrary dialects outside initial scope. Support common HTTP JSON, multipart/binary and empty responses as specified in S0-04/06; do not promise every JSON Schema keyword.
 2. Adopt Scalar as primary parser/validator/upgrade candidate behind a Frontspan-owned adapter; final dependency pin and adoption contingent on synthetic compatibility/security spike. Retain original version and provenance. Validate original version before any conversion, normalize via version-aware adapters or verified upgrade, and validate canonical semantics. No implicit lossy repair, explicit diagnostics for known nonconformant documents. Fallback evaluate separate version adapters if upgrader changes semantics.
@@ -24,4 +24,4 @@ Issue #3; D-04 and preliminary D-06. See [research](../research/OPENAPI-CODEGEN.
 
 ## Acceptance and remaining work
 
-Approval establishes direction only. No dependency installed, fixture run, runtime benchmark or certified spec compatibility. S0-04 defines concrete IR schema, feature support and diagnostics; S0-05 defines emitters/ownership/sync; S0-06 defines transport and URL security; S0-08 authors fixtures. Spike must verify exact Scalar package behavior/versions/licenses, supported schemas, blocked external IO, bounded parsing and deterministic round-trip; if unsuccessful, return to maintainer with alternatives. Do not implement before applicable approved contracts.
+Maintainer approval establishes direction only. No dependency installed, fixture run, runtime benchmark or certified spec compatibility. S0-04 defines concrete IR schema, feature support and diagnostics; S0-05 defines emitters/ownership/sync; S0-06 defines transport and URL security; S0-08 authors fixtures. Spike must verify exact Scalar package behavior/versions/licenses, supported schemas, blocked external IO, bounded parsing and deterministic round-trip; if unsuccessful, return to maintainer with alternatives. Do not implement before applicable approved contracts.
