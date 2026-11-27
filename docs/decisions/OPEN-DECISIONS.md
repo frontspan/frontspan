@@ -22,8 +22,10 @@ Resolve P0 decisions before the related implementation starts. A proposal below 
 | D-16 | Managed collections/database ownership | V4 | storage, migrations, authorization and audit |
 | D-17 | Shared module distribution | V2 | versioned module contracts and sharing mechanism |
 
-Research candidates: Orval, Hey API, Storybook, shadcn/ui, Changesets; future composite/security research may include KrakenD and external auth integrations. Review actual source and licenses; no research has been completed in this baseline.
+Research candidates: Orval, Hey API, Storybook, shadcn/ui, Changesets; future composite/security research may include KrakenD and external auth integrations. Review actual source and licenses; Orval and Hey API research is recorded in [OpenAPI and codegen research](../research/OPENAPI-CODEGEN.md).
 
 ## Accepted decision follow-up
 
 D-01 and D-10: architecture and target matrix approved in [ADR-015](ADR-015-toolchain-compatibility.md). Exact patches, compatibility tests, npm namespace and publishing bootstrap, CI and ruleset setup remain Sprint 1 or pre-release verification tasks; do not interpret approval as certification.
+
+D-04 and preliminary D-06: direction approved in [ADR-016](ADR-016-openapi-codegen.md). Exact dependency adoption and compatibility/security verification, concrete IR/feature matrix and emitter/ownership/sync specifications remain open in S0-04/05/06/08 and implementation spikes.
