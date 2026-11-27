@@ -4,6 +4,10 @@
 
 Read README.md, docs/product/PRD.md, docs/product/SCOPE.md, docs/architecture/ARCHITECTURE.md, docs/decisions/README.md, docs/decisions/OPEN-DECISIONS.md and the assigned issue. Read relevant ADRs and module specifications before touching a package.
 
+## Task coordination
+
+GitHub Issues are the task system of record; GitHub Projects is not required. Follow [the issue workflow](docs/planning/ISSUE-WORKFLOW.md) and the active sprint plan. Check prerequisites and claim work in the issue before editing. Keep status and verification evidence in the issue; do not treat an unmerged PR as completed work.
+
 ## Work boundaries
 
 - Work on one issue with explicit acceptance criteria. Do not implement a feature merely because it appears in the future roadmap.
