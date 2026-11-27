@@ -14,10 +14,12 @@ Accepted means previously agreed in product discovery; proposed means a recommen
 | ADR-008 | Versioned shared presets with project overrides subject to mandatory policy | Accepted |
 | ADR-009 | Separately published packages in a monorepo with unified versioning | Accepted |
 | ADR-010 | GitHub, public Frontspan repository, Apache-2.0 license | Accepted / repository verified |
-| ADR-011 | Turborepo, pnpm, Changesets, Vitest, Playwright | Proposed tooling; exact versions pending |
+| ADR-011 | Turborepo, pnpm, Changesets, Vitest, Playwright | Accepted via ADR-015; exact versions pending |
 | ADR-012 | MVP API development + basic BFF; later security/application/managed-resource phases | Planning recommendation for review |
-| ADR-013 | Public registry for generic packages, private organizational extensions | Proposed distribution policy |
+| ADR-013 | Public registry for generic packages, private organizational extensions | Accepted via ADR-015 |
 | ADR-014 | Headless form/table/i18n integrations; no UI builders or app-wide state mandate | Accepted |
+
+| [ADR-015](ADR-015-toolchain-compatibility.md) | Runtime targets, ESM, engineering stack, CI and release policy | Accepted; verification pending |
 
 ## ADR-001 to ADR-009 — rationale and implications
 
