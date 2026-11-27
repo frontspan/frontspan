@@ -1,0 +1,25 @@
+{
+  "name": "frontspan-workspace",
+  "private": true,
+  "packageManager": "pnpm@11.29.0",
+  "engines": {
+    "node": "26.13.1"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "format:check": "prettier --check package.json pnpm-workspace.yaml turbo.json eslint.config.mjs packages scripts .github/workflows",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "build": "turbo run build",
+    "test:pack": "node scripts/smoke-consumer.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.15.0",
+    "prettier": "3.10.1",
+    "turbo": "2.11.13",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.74.0",
+    "vitest": "5.1.2"
+  }
+}
