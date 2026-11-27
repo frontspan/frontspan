@@ -1,6 +1,6 @@
 # Sprint 1 — Foundation engineering
 
-Status: Sprint 1 execution authorized in #10; #20 completed. No dates or assignees. Follow AGENTS.md and ISSUE-WORKFLOW.md. All issues must verify dependencies and claim work before coding. Do not merge application code without passing applicable CI and review.
+Status: Sprint 1 execution authorized in #10; #20–22 completed. No dates or assignees. Follow AGENTS.md and ISSUE-WORKFLOW.md. All issues must verify dependencies and claim work before coding. Do not merge application code without passing applicable CI and review.
 
 | Task | Issue | Dependencies |
 |---|---|---|
@@ -15,7 +15,7 @@ Status: Sprint 1 execution authorized in #10; #20 completed. No dates or assigne
 
 ## Bootstrap gate
 
-To avoid a CI bootstrap dependency cycle, S1-01 includes the minimal PR CI required to validate its own root scripts (lint, typecheck, test, build, frozen install). S1-02 expands this into matrix/quality gates after #20 merges. This is a sequencing clarification, not permission to bypass review or CI. If required CI or review gates cannot run, stop and report. #21 also verifies and prepares the [delegated development policy](AUTONOMOUS-DEVELOPMENT.md); the current human approval gate remains until verified cutover. Organization rulesets/permissions require explicit authorization. Exact version pin, npm ownership and release workflow remain verification/approval tasks; no publishing.
+To avoid a CI bootstrap dependency cycle, S1-01 includes the minimal PR CI required to validate its own root scripts (lint, typecheck, test, build, frozen install). S1-02 expands this into matrix/quality gates after #20 merges. This is a sequencing clarification, not permission to bypass review or CI. If required CI or review gates cannot run, stop and report. #21 CI foundation completed; the trusted review gate follow-up #33 is blocked. The maintainer accepted the reduced-assurance [delegated development policy](AUTONOMOUS-DEVELOPMENT.md), with native CI and procedural independent review for routine tasks. Organization rulesets/permissions require explicit authorization. Exact version pin, npm ownership and release workflow remain verification/approval tasks; no publishing.
 
 ## Sprint boundary
 
