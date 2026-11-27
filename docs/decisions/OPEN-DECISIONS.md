@@ -28,4 +28,6 @@ Research candidates: Orval, Hey API, Storybook, shadcn/ui, Changesets; future co
 
 D-01 and D-10: architecture and target matrix approved in [ADR-015](ADR-015-toolchain-compatibility.md). Exact patches, compatibility tests, npm namespace and publishing bootstrap, CI and ruleset setup remain Sprint 1 or pre-release verification tasks; do not interpret approval as certification.
 
-D-04 and preliminary D-06: direction approved in [ADR-016](ADR-016-openapi-codegen.md). Exact dependency adoption and compatibility/security verification, concrete IR/feature matrix and emitter/ownership/sync specifications remain open in S0-04/05/06/08 and implementation spikes.
+D-04 and preliminary D-06: direction approved in [ADR-016](ADR-016-openapi-codegen.md). Exact dependency adoption and compatibility/security verification, IR/feature matrix design is recorded in ADR-017; emitter/ownership/sync specifications and compatibility verification remain open in S0-05/06/08 and implementation spikes.
+
+D-03 and D-05: configuration and normalized IR v1 design approved in [ADR-017](ADR-017-config-ir-v1.md). JSON Schema/TypeScript implementation, migration and compatibility verification remain open; runtime enforcement, mapping, transport and sync details follow S0-05/06/07/08.

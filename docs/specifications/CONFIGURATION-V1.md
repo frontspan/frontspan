@@ -1,6 +1,6 @@
-# Configuration contract v1 — proposed
+# Configuration contract v1
 
-Status: proposed for S0-04 (#4). ADR-003/008/016 apply. Examples are synthetic. This is a specification, not a running schema or implementation.
+Status: accepted design baseline under ADR-017; implementation and verification pending. S0-04 (#4). ADR-003/008/016 apply. Examples are synthetic. This is a specification, not a running schema or implementation.
 
 ## Ownership and layout
 

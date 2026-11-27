@@ -1,6 +1,6 @@
-# Normalized contract IR v1 — proposed
+# Normalized contract IR v1
 
-Status: proposed for S0-04 (#4), not executable code. ADR-016 governs. Core owns neutral contracts; openapi owns adapters/import; codegen, next and Studio consume public contracts. No Scalar/TypeScript compiler objects, runtime secrets, functions, Map, Set or cyclic JS objects in serialized IR. Graph cycles use string IDs. No parser-specific schema types in public API.
+Status: accepted design baseline under ADR-017; implementation and verification pending. S0-04 (#4), not executable code. ADR-016 governs. Core owns neutral contracts; openapi owns adapters/import; codegen, next and Studio consume public contracts. No Scalar/TypeScript compiler objects, runtime secrets, functions, Map, Set or cyclic JS objects in serialized IR. Graph cycles use string IDs. No parser-specific schema types in public API.
 
 ## Contract boundaries
 

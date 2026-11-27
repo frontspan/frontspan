@@ -1,9 +1,9 @@
-# ADR proposal — Configuration and normalized IR v1
+# ADR-017 — Configuration and normalized IR v1
 
-Status: Proposed; maintainer review required. Date: 2026-11-27. Issue #4; D-03/D-05.
-Read [Configuration v1](../specifications/CONFIGURATION-V1.md) and [IR v1](../specifications/IR-V1.md) as the concrete contract proposal.
+Status: Accepted by maintainer on 2026-11-28; implementation and verification pending. Date: 2026-11-27. Issue #4; D-03/D-05.
+Read [Configuration v1](../specifications/CONFIGURATION-V1.md) and [IR v1](../specifications/IR-V1.md) as the accepted design baseline.
 
-## Decisions proposed
+## Accepted decisions
 
 - Modular strict JSON, local Draft 2020-12 schemas and semantic validation; version each document and migrate explicitly. Shared loader/editor for CLI and Studio.
 - Stable IDs, explicit selection materialized into endpoint files; no implicit endpoint exposure. Git-tracked authoring and separately derived effective config.
@@ -19,4 +19,4 @@ One giant config complicates edits; executable TS config weakens Studio roundtri
 
 ## Remaining work and gates
 
-No code, schema package, tests or dependencies. Approve design before implementation. Exact JSON Schema files, TS public definitions, migration/validation tests, parser security bounds and feature certification require Sprint 1/2 work. D-06/07/08/09/11 still open; S0-05/06/07/08 must refine their boundaries without silently changing this ADR. Numeric hard limits and final package export names pending. Examples synthetic.
+No code, schema package, tests or dependencies. Maintainer approval recorded; implement and verify in the relevant sprints. Exact JSON Schema files, TS public definitions, migration/validation tests, parser security bounds and feature certification require Sprint 1/2 work. D-06/07/08/09/11 still open; S0-05/06/07/08 must refine their boundaries without silently changing this ADR. Numeric hard limits and final package export names pending. Examples synthetic.
