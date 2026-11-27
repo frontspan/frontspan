@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "format:check": "prettier --check package.json pnpm-workspace.yaml turbo.json eslint.config.mjs packages scripts .github/workflows",
     "typecheck": "turbo run typecheck",
-    "test": "turbo run test",
+    "test": "turbo run test && node --test scripts/review-gate/*.test.mjs",
     "build": "turbo run build",
     "test:pack": "node scripts/smoke-consumer.mjs"
   },
