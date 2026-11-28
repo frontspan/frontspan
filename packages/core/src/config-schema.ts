@@ -3,6 +3,8 @@ import environment from "./schemas/environment.schema.json" with { type: "json" 
 import resource from "./schemas/resource.schema.json" with { type: "json" };
 import root from "./schemas/root.schema.json" with { type: "json" };
 
+import preset from "./schemas/preset.schema.json" with { type: "json" };
+
 interface ShapeSchema {
   readonly $ref?: string;
   readonly type?: string;
@@ -37,6 +39,10 @@ export function validateShape(
 ): ShapeIssue | undefined {
   const schema = schemas[kind];
   return check(schema, value, "", schema.$defs);
+}
+
+export function validatePresetShape(value: unknown): ShapeIssue | undefined {
+  return check(preset, value, "", preset.$defs);
 }
 
 function resolve(schema: ShapeSchema, definitions: SchemaMap): ShapeSchema {

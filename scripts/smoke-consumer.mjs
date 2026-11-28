@@ -22,7 +22,13 @@ try {
   assert(files.includes("dist/index.js"), "packed JS entry point is missing");
   assert(files.includes("dist/index.d.ts"), "packed declarations are missing");
   assert(!files.some((file) => file.startsWith("src/")), "source was packed");
-  for (const kind of ["root", "resource", "endpoint", "environment"]) {
+  for (const kind of [
+    "root",
+    "resource",
+    "endpoint",
+    "environment",
+    "preset",
+  ]) {
     assert(
       files.includes(`dist/schemas/${kind}.schema.json`),
       "configuration schema was not packed",
@@ -56,13 +62,16 @@ try {
   const consumer = `
     import assert from "node:assert/strict";
     import * as core from "@frontspan/core";
-    import { loadConfig } from "@frontspan/core/config";
+    import { loadConfig, loadEffectiveConfig } from "@frontspan/core/config";
     import schema from "@frontspan/core/schemas/root.schema.json" with { type: "json" };
     assert.deepEqual(Object.keys(core), []);
     assert.equal(schema.properties.schemaVersion.const, 1);
     const result = await loadConfig(".");
     assert.equal(result.ok, true);
     assert.equal(result.config.root.value.project.name, "synthetic-consumer");
+    const effective = await loadEffectiveConfig(".", { evidence: [] });
+    assert.equal(effective.ok, true);
+    assert.equal(effective.config.profile, null);
   `;
   execFileSync(process.execPath, ["--input-type=module", "--eval", consumer], {
     cwd,

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frontspan declarative preset v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "defaults", "policy"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "timeoutMs": { "$ref": "#/$defs/timeout" },
+        "retries": { "$ref": "#/$defs/retries" },
+        "validation": { "enum": ["strict", "warn", "off"] }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxTimeoutMs": { "$ref": "#/$defs/timeout" },
+        "maxRetries": { "$ref": "#/$defs/retries" },
+        "requireStrictValidation": { "type": "boolean" },
+        "allowedExecutionModes": {
+          "type": "array",
+          "items": { "enum": ["proxy", "direct"] }
+        },
+        "deniedMethods": {
+          "type": "array",
+          "items": {
+            "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
+          }
+        },
+        "allowedPublicEnvNames": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Z_][A-Z0-9_]*$" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "timeout": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "retries": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+  }
+}

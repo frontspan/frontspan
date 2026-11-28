@@ -125,7 +125,12 @@ export type ConfigErrorCode =
   | "CFG_INVALID_ROUTE"
   | "CFG_ROUTE_COLLISION"
   | "CFG_INVALID_NAME"
-  | "CFG_NAME_COLLISION";
+  | "CFG_NAME_COLLISION"
+  | "CFG_PRESET_EVIDENCE"
+  | "CFG_PRESET_INTEGRITY"
+  | "CFG_PRESET_INVALID"
+  | "CFG_PROFILE_INVALID"
+  | "CFG_POLICY_VIOLATION";
 
 export type ConfigDiagnostic = Readonly<{
   code: ConfigErrorCode;
