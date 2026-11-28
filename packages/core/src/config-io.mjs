@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { constants } from "node:fs";
 import { lstat, open, opendir, realpath } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -86,6 +87,22 @@ export function canonicalLiteralUrl(value, httpsOnly) {
 const sameFile = (left, right) =>
   left.dev === right.dev && left.ino === right.ino;
 
+/** @param {Uint8Array} bytes @returns {string} */
+export function sha256Digest(bytes) {
+  return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
+}
+
+/** @param {Uint8Array} bytes @returns {string} */
+export function decodeUtf8(bytes) {
+  try {
+    return new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(
+      bytes,
+    );
+  } catch {
+    throw new ConfigIoError("CFG_INVALID_JSON");
+  }
+}
+
 /** @param {string} projectRoot */
 export async function openProject(projectRoot) {
   if (typeof projectRoot !== "string" || projectRoot.trim() === "")
@@ -125,7 +142,7 @@ export async function openProject(projectRoot) {
       return { absolute, stat };
     }
 
-    return {
+    const project = {
       /** @param {string} path @param {"file" | "directory"} type */
       async checkPath(path, type) {
         const target = await inspect(path);
@@ -157,6 +174,10 @@ export async function openProject(projectRoot) {
       },
       /** @param {string} path */
       async read(path) {
+        return decodeUtf8(await project.readBytes(path));
+      },
+      /** @param {string} path */
+      async readBytes(path) {
         const before = await inspect(path);
         if (!before)
           throw new ConfigIoError(
@@ -200,19 +221,13 @@ export async function openProject(projectRoot) {
             throw new ConfigIoError("CFG_READ_FAILED");
           }
           bytes += length;
-          try {
-            return new TextDecoder("utf-8", {
-              fatal: true,
-              ignoreBOM: true,
-            }).decode(buffer.subarray(0, length));
-          } catch {
-            throw new ConfigIoError("CFG_INVALID_JSON");
-          }
+          return buffer.subarray(0, length);
         } finally {
           await handle.close();
         }
       },
     };
+    return project;
   } catch (error) {
     if (error instanceof ConfigIoError) throw error;
     throw new ConfigIoError("CFG_READ_FAILED");

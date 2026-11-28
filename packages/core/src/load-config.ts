@@ -5,7 +5,21 @@ import {
   openProject,
   pathsOverlap,
 } from "./config-io.mjs";
-import { validateShape, type DocumentKind } from "./config-schema.js";
+import {
+  evaluatePolicy,
+  PolicyError,
+  type PresetDocument,
+} from "./effective-policy.js";
+import {
+  readVerifiedPresets,
+  PresetInstallError,
+  type FrozenPresetEvidence,
+} from "./preset-install.js";
+import {
+  validatePresetShape,
+  validateShape,
+  type DocumentKind,
+} from "./config-schema.js";
 import type {
   AuthoredDocuments,
   AuthoredFile,
@@ -546,6 +560,81 @@ export async function loadConfig(
   } catch (error) {
     if (!(error instanceof ConfigFailure)) throw error;
     return { ok: false, diagnostics: [error.diagnostic] };
+  }
+}
+
+export type { FrozenPresetEvidence } from "./preset-install.js";
+export type { PresetDocument } from "./effective-policy.js";
+
+export interface EffectiveConfigOptions {
+  readonly evidence: readonly FrozenPresetEvidence[];
+  readonly profile?: string;
+  /** FRONTSPAN_ENV supplied by the caller; core never reads the process environment. */
+  readonly environmentProfile?: string;
+}
+
+export type EffectiveConfigResult =
+  | { readonly ok: true; readonly config: ReturnType<typeof evaluatePolicy> }
+  | Extract<LoadConfigResult, { ok: false }>;
+
+/** Resolves effective configuration only after exact preset verification. */
+export async function loadEffectiveConfig(
+  projectRoot: string,
+  options: EffectiveConfigOptions,
+): Promise<EffectiveConfigResult> {
+  const authored = await loadConfig(projectRoot);
+  if (!authored.ok) return authored;
+  try {
+    const profile = options?.profile;
+    const environmentProfile = options?.environmentProfile;
+    if (
+      profile !== undefined &&
+      environmentProfile !== undefined &&
+      profile !== environmentProfile
+    )
+      throw new PolicyError("CFG_PROFILE_INVALID");
+    const docs = await readVerifiedPresets(
+      projectRoot,
+      authored.config.root.value.presets ?? [],
+      options?.evidence,
+    );
+    const presets = docs.map((doc, index) => {
+      const issue = validatePresetShape(doc);
+      if (issue)
+        fail(
+          { document: "root" },
+          "CFG_PRESET_INVALID",
+          `Installed preset: ${issue.message}`,
+          `/presets/${index}`,
+        );
+      return doc as PresetDocument;
+    });
+    return {
+      ok: true,
+      config: evaluatePolicy(
+        authored.config,
+        presets,
+        profile === undefined ? environmentProfile : profile,
+      ),
+    };
+  } catch (error) {
+    if (error instanceof ConfigFailure)
+      return { ok: false, diagnostics: [error.diagnostic] };
+    if (!(error instanceof PresetInstallError || error instanceof PolicyError))
+      throw error;
+    return {
+      ok: false,
+      diagnostics: [
+        {
+          document: "root",
+          phase: error instanceof PresetInstallError ? "load" : "config",
+          severity: "error",
+          pointer: error instanceof PresetInstallError ? "/presets" : "",
+          code: error.code,
+          message: error.message,
+        },
+      ],
+    };
   }
 }
 
